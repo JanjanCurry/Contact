@@ -1,7 +1,18 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
+/**
+ * 
+ */
+if ( !class_exists( 'Posttypes' ) ) {
+class Posttypes{
+	
 
 // CUSTOM POST TYPES
+
 function custom_contact(){
 	register_post_type( 'custom-contact',
 			array(
@@ -23,8 +34,9 @@ function custom_contact(){
 			));
 
 }
-add_action( 'init', 'custom_contact');
+//add_action( 'init', 'custom_contact');
 // SET COLUMNS
+
 function set_contact_columns(){
 $newColumns = array();
 $newColumns['title'] = 'Full Name';
@@ -34,8 +46,11 @@ $newColumns['number'] = 'Phone Number';
 $newColumns['date'] = 'Date';
 return $newColumns;
 }
-add_filter( 'manage_custom-contact_posts_columns', 'set_contact_columns');
+
+//add_filter( 'manage_custom-contact_posts_columns', 'set_contact_columns');
 // CUSTOM COLUMNS
+
+
 function contact_custom_column($column, $post_id){
 switch ($column) {
 	case 'message':
@@ -51,4 +66,15 @@ switch ($column) {
 		break;
 }
 }
-add_action( 'manage_custom-contact_posts_custom_column', 'contact_custom_column', 10, 2);
+//add_action( 'manage_custom-contact_posts_custom_column', 'contact_custom_column', 10, 2);
+
+
+function unregister_posttype_custom_contact()
+{
+	unregister_post_type( 'custom-contact' );
+}
+
+}
+
+}
+

@@ -1,22 +1,25 @@
 <?php  
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
 
+/**
+ * 
+ */
 
-
-
+if ( !class_exists( 'Metabox' ) ) {
+class Metabox {
+	
 
 // METABOX
-function contact_email_metabox_function()
-{
-	add_meta_box( 'contact_email', 'Contact Email', 'contact_email_callback','custom-contact','side');
-	add_meta_box( 'contact_phonenumber', 'Contact Phone Number', 'contact_phonenumber_callback','custom-contact','side');
-}
 function contact_phonenumber_callback( $post ){
 wp_nonce_field( 'contact_save_phonenumber_data', 'contact_phonenumber_box_nonce');
 	$value = get_post_meta( $post->ID, '_contact_phonenumber_value_key', true );
 	echo '<label for="contact_phonenumber_field"> Phone Number Here</label>';
 	echo '<input type="text" id="contact_phonenumber_field" name="contact_phonenumber_field" value=" '. esc_attr( $value ) . '" size="25">';	
 }
+
 function contact_email_callback( $post )
 {
 	wp_nonce_field( 'contact_save_email_data', 'contact_email_box_nonce');
@@ -24,10 +27,12 @@ function contact_email_callback( $post )
 	echo '<label for="contact_email_field"> Email Address Here</label>';
 	echo '<input type="text" id="contact_email_field" name="contact_email_field" value=" '. esc_attr( $value ) . '" size="25">';
 }
-add_action( 'add_meta_boxes', 'contact_email_metabox_function');
+
+//add_action( 'add_meta_boxes', 'contact_email_metabox_function');
 
 
 // SAVE METABOX
+
 function contact_save_email_data ( $post_id ) {
 	if ( ! isset( $_POST['contact_email_box_nonce'] ) ) {
 		return;
@@ -48,7 +53,7 @@ function contact_save_email_data ( $post_id ) {
 	$my_data = sanitize_text_field( $_POST['contact_email_field'] );
 	update_post_meta( $post_id, '_contact_email_value_key', $my_data );
 }
-add_action( 'save_post', 'contact_save_email_data');
+//add_action( 'save_post', 'contact_save_email_data');
 
 
 function contact_save_phonenumber_data ( $post_id ) {
@@ -71,5 +76,8 @@ function contact_save_phonenumber_data ( $post_id ) {
 	$my_data = sanitize_text_field( $_POST['contact_phonenumber_field'] );
 	update_post_meta( $post_id, '_contact_phonenumber_value_key', $my_data );
 }
-add_action( 'save_post', 'contact_save_phonenumber_data');
+//add_action( 'save_post', 'contact_save_phonenumber_data');
+
+}
+}
 

@@ -1,4 +1,17 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
+/**
+ * 
+ */
+if ( !class_exists( 'Allenqueue' ) ) {
+class Allenqueue {
+	
+
+
 function sunset_load_scripts(){
 	
 	wp_register_style( 'bootstrap', plugin_dir_url( __FILE__ ) . '/css/bootstrap.min.css', array(), '3.3.6', 'all' );
@@ -16,5 +29,29 @@ function sunset_load_scripts(){
 	wp_enqueue_script( 'contactjs' );
 	
 }
-add_action( 'wp_enqueue_scripts', 'sunset_load_scripts' );
+//add_action( 'wp_enqueue_scripts', 'sunset_load_scripts' );
 
+
+function unloadscripts(){
+
+	 wp_dequeue_style( 'bootstrap' );
+    wp_deregister_style( 'bootstrap' );
+
+	wp_dequeue_style( 'contact' );
+    wp_deregister_style( 'contact' );    
+
+
+    wp_deregister_script( 'jquery' );
+    wp_dequeue_scrpipt( 'jquery' );
+    
+    wp_deregister_script( 'bootstrapjs' );
+    wp_dequeue_scrpipt( 'bootstrapjs' );
+    
+    wp_deregister_script( 'contactjs' );
+    wp_dequeue_scrpipt( 'contactjs' );
+    
+}
+}
+//add_action( 'wp_enqueue_scripts', 'unloadscripts' );
+
+}

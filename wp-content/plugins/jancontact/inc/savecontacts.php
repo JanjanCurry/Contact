@@ -1,5 +1,17 @@
 <?php  
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
+/**
+ * 
+ */
+
+// if ( !class_exists( 'Save_Contact' ) ) {
+// class Save_Contact {
+	
+
 
 add_action('wp_ajax_nopriv_save_user_contact_form', 'save_contact');
 add_action('wp_ajax_save_user_contact_form', 'save_contact');
@@ -45,7 +57,7 @@ echo $postID;
 
 die();
 	}
- 
+
 
 function mailtrap($phpmailer) {
   $phpmailer->isSMTP();
@@ -56,5 +68,8 @@ function mailtrap($phpmailer) {
   $phpmailer->Password = '53eb3902fa30cf';
 }
 
-add_action('phpmailer_init', 'mailtrap');
+//add_action('phpmailer_init', 'mailtrap');
+
+
+//}
 

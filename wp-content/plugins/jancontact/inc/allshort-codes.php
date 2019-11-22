@@ -1,10 +1,20 @@
 <?php
+/**
+ * 
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
+	
+	
 
 function simple_shortcode(){
 	$info = "This is a simple site";
 	return $info;
 }
-	add_shortcode( 'simple', 'simple_shortcode' );
+//	add_shortcode( 'simple', 'simple_shortcode' );
 
 function contact_shortcode( $atts, $content= null ){
 
@@ -22,5 +32,7 @@ return $myvariable;
 }
 
 
-add_shortcode( 'contact_form', 'contact_shortcode');
+return add_shortcode( 'contact_form', 'contact_shortcode');
+
+
 
