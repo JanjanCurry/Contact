@@ -14,7 +14,23 @@ class Allenqueue {
 
 function crud_load_enqueue_scripts(){
 	
+$slug = '';
+$pages_inc = array("frontendpage","book-list","add-new-book","edit-book","add-new-author","remove-author","add-new-student","remove-students","course-tracker");
+	$current_page = $_GET['page'];
 
+	if (empty($current_page)) {
+		$actual_link = "http://$_SERVER[HTTP_POST]$_SERVER[REQUEST_URI]";
+		if (preg_match("/my_book/", $actual_link)) {
+			$current_page = "frontendpage";
+		}
+	}
+
+
+
+
+
+	if (in_array($current_page, $pages_inc)) {
+	
 	wp_register_style( 'bootstrap', MY_PLUGIN_DIRECTORY_URL . 'assets/css/bootstrap.min.css', array(), '3.3.6', 'all' );
 	wp_enqueue_style('bootstrap');
 	wp_register_style( 'crud', MY_PLUGIN_DIRECTORY_URL . 'assets/css/crud.css', array(), '1.0.0', 'all' );
@@ -38,6 +54,7 @@ function crud_load_enqueue_scripts(){
 	wp_register_script( 'validate', MY_PLUGIN_DIRECTORY_URL  . 'assets/js/validate.min.js', array(), '1.0.0', true );
 	wp_enqueue_script('validate');
 	wp_localize_script( "crudjs", "mybookajaxurl", admin_url("admin-ajax.php"));
+	}
 }
 
 

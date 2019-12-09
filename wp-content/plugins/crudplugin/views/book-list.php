@@ -32,7 +32,6 @@
 				if (count($allbooks) > 0) {
 					$i = 1;
 					foreach ($allbooks as $key => $value) {
-						# code...
 				
 			 ?>
 			<tr>
